@@ -1,6 +1,6 @@
 import pymysql
 
-conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123456', db='data1bak', charset='utf8')
+conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='root', db='data1', charset='utf8')
 cursor = conn.cursor()
 with open("data1.txt","r",encoding = "utf8") as fp1:
    items =  fp1.readlines()
@@ -10,7 +10,7 @@ with open("data1.txt","r",encoding = "utf8") as fp1:
        label = spliters[1]
        question = spliters[2]
        answers = spliters[3]
-       sql1 = "INSERT ignore INTO data1bak.corpus VALUES(%s,%s,%s,%s)"
+       sql1 = "INSERT ignore INTO data1.corpus VALUES(%s,%s,%s,%s)"
        cursor.execute(sql1,(id, label, question, answers))
        conn.commit()
 cursor.close()
