@@ -34,13 +34,13 @@ class CornellData:
             dirName (string): directory where to load the corpus
         """
         self.lines = {}
-        self.conversations = []
+        self.conversations = [] 
 
-        MOVIE_LINES_FIELDS = ["lineID","characterID","movieID","character","text"]
-        MOVIE_CONVERSATIONS_FIELDS = ["character1ID","character2ID","movieID","utteranceIDs"]
+        LINES_FIELDS = ["lineID","text"]
+        CONVERSATIONS_FIELDS = ["character1ID","utteranceIDs"]
 
-        self.lines = self.loadLines(os.path.join(dirName, "movie_lines.txt"), MOVIE_LINES_FIELDS)
-        self.conversations = self.loadConversations(os.path.join(dirName, "movie_conversations.txt"), MOVIE_CONVERSATIONS_FIELDS)
+        self.lines = self.loadLines(os.path.join(dirName, "lineids.txt"), LINES_FIELDS)
+        self.conversations = self.loadConversations(os.path.join(dirName, "conversations.txt"), CONVERSATIONS_FIELDS)
 
         # TODO: Cleaner program (merge copy-paste) !!
 
@@ -54,7 +54,7 @@ class CornellData:
         """
         lines = {}
 
-        with open(fileName, 'r', encoding='iso-8859-1') as f:  # TODO: Solve Iso encoding pb !
+        with open(fileName, 'r', encoding='utf8') as f:  # TODO: Solve Iso encoding pb !
             for line in f:
                 values = line.split(" +++$+++ ")
 
@@ -77,7 +77,7 @@ class CornellData:
         """
         conversations = []
 
-        with open(fileName, 'r', encoding='iso-8859-1') as f:  # TODO: Solve Iso encoding pb !
+        with open(fileName, 'r', encoding='utf8') as f:  # TODO: Solve Iso encoding pb !
             for line in f:
                 values = line.split(" +++$+++ ")
 
@@ -92,7 +92,7 @@ class CornellData:
                 # Reassemble lines
                 convObj["lines"] = []
                 for lineId in lineIds:
-                    convObj["lines"].append(self.lines[lineId])
+                    convObj["lines"].append(self.lines[str(lineId)])
 
                 conversations.append(convObj)
 

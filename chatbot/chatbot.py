@@ -29,9 +29,9 @@ import math
 
 from tqdm import tqdm  # Progress bar
 from tensorflow.python import debug as tf_debug
-
-from chatbot.textdata import TextData
 from chatbot.model import Model
+from chatbot.textdata import TextData
+
 
 
 class Chatbot:
@@ -112,7 +112,7 @@ class Chatbot:
         datasetArgs.add_argument('--corpus', choices=TextData.corpusChoices(), default=TextData.corpusChoices()[0], help='corpus on which extract the dataset.')
         datasetArgs.add_argument('--datasetTag', type=str, default=None, help='add a tag to the dataset (file where to load the vocabulary and the precomputed samples, not the original corpus). Useful to manage multiple versions')  # The samples are computed from the corpus if it does not exist already. There are saved in \'data/samples/\'
         datasetArgs.add_argument('--ratioDataset', type=float, default=1.0, help='ratio of dataset used to avoid using the whole dataset')  # Not implemented, useless ?
-        datasetArgs.add_argument('--maxLength', type=int, default=10, help='maximum length of the sentence (for input and output), define number of maximum step of the RNN')
+        datasetArgs.add_argument('--maxLength', type=int, default=25, help='maximum length of the sentence (for input and output), define number of maximum step of the RNN')
 
         # Network options (Warning: if modifying something here, also make the change on save/loadParams() )
         nnArgs = parser.add_argument_group('Network options', 'architecture related option')
@@ -126,7 +126,7 @@ class Chatbot:
         trainingArgs = parser.add_argument_group('Training options')
         trainingArgs.add_argument('--numEpochs', type=int, default=30, help='maximum number of epochs to run')
         trainingArgs.add_argument('--saveEvery', type=int, default=1000, help='nb of mini-batch step before creating a model checkpoint')
-        trainingArgs.add_argument('--batchSize', type=int, default=10, help='mini-batch size')
+        trainingArgs.add_argument('--batchSize', type=int, default=80, help='mini-batch size')
         trainingArgs.add_argument('--learningRate', type=float, default=0.001, help='Learning rate')
 
         return parser.parse_args(args)
@@ -448,7 +448,7 @@ class Chatbot:
             sess: The current running session
         """
 
-        print('WARNING: ', end='')
+        print('WARNING: ')
 
         modelName = self._getModelName()
 

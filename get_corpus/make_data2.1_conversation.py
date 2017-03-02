@@ -1,3 +1,5 @@
+import jieba
+
 conversations_text = open("conversations.txt", 'a')
 lineids_text = open("lineids.txt", 'a')
 database_num = ["2","2.1"]
@@ -17,10 +19,12 @@ for i in database_num:
 			split_answer_again2= [n.split("？")[0].strip() for n in split_answer_again1]
 			lineids = []
 			for m in split_answer_again2:
-					lines_write_in = str(lineid) + " +++$+++ " + m + "\n"
-					lineids_text.write(lines_write_in)
-					lineids.append(lineid)
-					lineid = lineid + 1
+				content_list = jieba.cut(m, cut_all=False)
+				content = " ".join(content_list)
+				lines_write_in = str(lineid) + " +++$+++ " + content + "\n"
+				lineids_text.write(lines_write_in)
+				lineids.append(lineid)
+				lineid = lineid + 1
 			conversations_text.write("con"+" +++$+++ "+str(lineids)+"\n")
     			
  
