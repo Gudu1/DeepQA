@@ -13,8 +13,15 @@ for i in tags:
         add_str = add_str + "msg.question like '%%{}%%' and ".format(i)
 
 add_str = add_str.rstrip(' and ')
+add_str = add_str + " or ( "
+for i in tags:
+    if i != "怎么" and i !="做":
+        add_str = add_str + "msg.label like '%%{}%%' and ".format(i)
+
+add_str = add_str.rstrip(' and ')
+add_str = add_str + " ) "
 sql = 'select answer from data1.corpus msg where ' + add_str 
-#print(sql)
+print(sql)
 
 cursor.execute(sql)
 answers = cursor.fetchall()[0][0]
