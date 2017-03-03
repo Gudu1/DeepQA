@@ -1,6 +1,7 @@
 import pymysql
 import jieba
 
+
 conn = pymysql.connect(host = '127.0.0.1',port=3306,user='root',passwd='123456',db = 'shortdata2.1',charset='utf8')
 cursor = conn.cursor()
 with open("shortdata2.1_shortcorpus.txt",'r',encoding="utf8") as fp:
