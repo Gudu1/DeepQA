@@ -39,8 +39,8 @@ class CornellData:
         LINES_FIELDS = ["lineID","text"]
         CONVERSATIONS_FIELDS = ["character1ID","utteranceIDs"]
 
-        self.lines = self.loadLines(os.path.join(dirName, "lineids.txt"), LINES_FIELDS)
-        self.conversations = self.loadConversations(os.path.join(dirName, "conversations.txt"), CONVERSATIONS_FIELDS)
+        self.lines = self.loadLines(os.path.join(dirName, "short_lineids.txt"), LINES_FIELDS)
+        self.conversations = self.loadConversations(os.path.join(dirName, "short_conversations.txt"), CONVERSATIONS_FIELDS)
 
         # TODO: Cleaner program (merge copy-paste) !!
 

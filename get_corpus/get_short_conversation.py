@@ -17,7 +17,7 @@ stop_words = ["一、","二、","三、","四、","五、","六","七、","九�
 with open("shortdata2.txt","r",encoding = "utf8") as fp1:
    items =  fp1.readlines()
    id = 1 #从1开始
-   for j in items:
+   for j in items: 
        spliters = [x.lstrip("'[").rstrip("']\n") for x in j.split(", ")] # 去除右侧的内容，可以从右往左依次strip,相应的左侧lstrip是从左往右
        question = spliters[1]
        answers = spliters[2]
