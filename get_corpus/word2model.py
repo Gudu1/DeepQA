@@ -44,14 +44,14 @@ write_in_file.close()
 
 t1 = time.time()
 #sentences = MySentences(r"D:\PYTHON")
-model = gensim.models.Word2Vec(gensim.models.word2vec.LineSentence("cut_all_corpus.txt"),size=110,window = 5, min_count = 5)
+model = gensim.models.Word2Vec(gensim.models.word2vec.LineSentence("cut_all_corpus.txt"),size=100,window = 5, min_count = 3)
 
 #model.save()
 t2 = time.time()
 usetime = str(t2 - t1)
 print(usetime)
-print(model.most_similar("豆角"))
+print(model.most_similar("茄子"))
 if os.path.exists("text.vector"):
         os.remove("text.vector")
-model.save_word2vec_format("text.vector",binary = False)
+model.wv.save_word2vec_format("text.vector",binary = False)
 model.init_sims(replace=True)

@@ -10,13 +10,14 @@ tags = jieba.analyse.extract_tags(words)
 add_str = ''
 for i in tags:
     if i != "怎么" and i !="做":
-        add_str = add_str + "msg.question like '%%{}%%' and ".format(i)
+        add_str = add_str + "msg.question like '%%{}%%' and ".format(i) 
 
 add_str = add_str.rstrip(' and ')
 add_str = add_str + " or ( "
 for i in tags:
     if i != "怎么" and i !="做":
         add_str = add_str + "msg.label like '%%{}%%' and ".format(i)
+    
 
 add_str = add_str.rstrip(' and ')
 add_str = add_str + " ) "
